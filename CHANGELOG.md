@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.1...v1.0.2) (2026-02-06)
+
+
+### Bug Fixes
+
+* module and localisation issues ([da07448](https://github.com/marmotherder/foundryvtt-agent-chat/commit/da074488e075a96da749797782b2ba4ebc37753a))
+
 ## [1.0.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.0...v1.0.1) (2026-02-06)
 
 
