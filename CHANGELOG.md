@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.5...v1.0.6) (2026-02-06)
+
+
+### Bug Fixes
+
+* add first agent ([952633c](https://github.com/marmotherder/foundryvtt-agent-chat/commit/952633c37a50a9b43aab1d847368b1e5aa7bbcd8))
+
 ## [1.0.5](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.4...v1.0.5) (2026-02-06)
 
 
