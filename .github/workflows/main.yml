@@ -5,20 +5,6 @@ on:
     branches:
     - main
 
-env:
-  # The URL used for the module's "Project URL" link on FoundryVTT's website.
-  project_url: "https://github.com/${{github.repository}}"
-
-  # A URL that will always point to the latest manifest.
-  # FoundryVTT uses this URL to check whether the current module version that
-  # is installed is the latest version. This URL should NOT change,
-  # otherwise FoundryVTT won't be able to perform this check.
-  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/module.json"
-
-  # The URL to the module archive associated with the module release being
-  # processed by this workflow.
-  release_module_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -54,9 +40,9 @@ jobs:
         files: 'module.json'
       env:
         VERSION: ${{ steps.release.outputs.version }}
-        URL: ${{ env.project_url }}
-        MANIFEST: ${{ env.latest_manifest_url }}
-        DOWNLOAD: ${{ env.release_module_url }}
+        URL: "https://github.com/${{ github.repository }}"
+        MANIFEST: "https://github.com/${{ github.repository }}/releases/latest/download/module.json"
+        DOWNLOAD: "https://github.com/${{ github.repository }}/releases/download/${{ steps.release.outputs.tag_name }}/module.zip"
 
     - name: Create Module Archive
       if: ${{ steps.release.outputs.release_created }}
@@ -66,6 +52,12 @@ jobs:
           ./module.zip    \
           module.json     \
           dist/
+
+    - name: Upload Release Manifest
+      if: ${{ steps.release.outputs.release_created }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh release upload ${{ steps.release.outputs.tag_name }} ./module.json
 
     - name: Upload Release Artifact
       if: ${{ steps.release.outputs.release_created }}

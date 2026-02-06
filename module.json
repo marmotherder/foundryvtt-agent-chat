@@ -14,11 +14,18 @@
   "license": "MIT",
   "minimumCoreVersion": "13",
   "compatibleCoreVersion": "13",
-  "url": "",
   "esmodules": ["dist/index.js"],
   "styles": [],
   "scripts": [],
   "packs": [],
-  "download": "",
-  "manifest": "module.json"
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    }
+  ],
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#"
 }
