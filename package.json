@@ -6,7 +6,7 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && tsc -w",
+    "build": "rm -rf ./dist && tsc",
     "watch": "tsc -w",
     "test": "jest"
   },
