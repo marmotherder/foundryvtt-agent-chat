@@ -12,7 +12,7 @@ Hooks.once("init", () => {
   game.settings.register(moduleName, settingAPIKey, {
     name: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.name"),
     hint: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.hint"),
-    scope: "client",
+    scope: "world",
     config: true,
     type: String,
     default: "",
