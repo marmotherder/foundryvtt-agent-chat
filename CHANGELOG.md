@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.4...v1.0.5) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove watch ([446df6a](https://github.com/marmotherder/foundryvtt-agent-chat/commit/446df6af7034047989938c2a1a988b9bc42e99b2))
+* update dist push ([31c173a](https://github.com/marmotherder/foundryvtt-agent-chat/commit/31c173aa2359ecd51252e61258cc5f09e75b8dd2))
+
 ## [1.0.4](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.3...v1.0.4) (2026-02-06)
 
 
