@@ -1,6 +1,6 @@
 import { CallableTool, Chat, FunctionCall, GenerateContentConfig, GoogleGenAI, Part, Tool, Type} from "@google/genai";
 import SystemInstruction from "./instructions";
-import { Tools } from "../tools/tool";
+import Tools from "../tools/tools";
 
 export default class GoogleAgent {
     ai: GoogleGenAI;
