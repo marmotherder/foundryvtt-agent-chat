@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.10...v1.0.11) (2026-02-06)
+
+
+### Bug Fixes
+
+* add npc tools to registration ([18021b0](https://github.com/marmotherder/foundryvtt-agent-chat/commit/18021b085afd40e0db1d8af9fa504fd9fac026ac))
+
 ## [1.0.10](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.9...v1.0.10) (2026-02-06)
 
 
