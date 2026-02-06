@@ -6,21 +6,24 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && ncc build dist/src/index.js -o dist",
-    "bundle": "ncc build dist/src/index.js -o dist",
+    "build": "tsc && rollup -c",
+    "bundle": "rollup -c",
     "watch": "tsc -w",
     "test": "jest"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/jest": "^29.5.2",
-    "@vercel/ncc": "^0.36.1",
     "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^13.346.0-beta.20250812191140",
     "jest": "^30.2.0",
+    "rollup": "^4.57.1",
     "ts-jest": "^29.4.6",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@google/genai": "^1.40.0"
+    "@google/genai": "^1.40.0",
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.340.1"
   }
 }
