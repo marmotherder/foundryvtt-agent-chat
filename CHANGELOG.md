@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.14](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.13...v1.0.14) (2026-02-06)
+
+
+### Bug Fixes
+
+* add proto token to initial create ([7f4e8cf](https://github.com/marmotherder/foundryvtt-agent-chat/commit/7f4e8cff7c0ffefa5e781348c8400aa82ea1618d))
+
 ## [1.0.13](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.12...v1.0.13) (2026-02-06)
 
 
