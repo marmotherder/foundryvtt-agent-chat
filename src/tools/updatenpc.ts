@@ -1,6 +1,6 @@
 import { Arguments, FunctionTool, Type } from "./types";
 
-const CreateNPCTool: FunctionTool = {
+const UpdateNPCTool: FunctionTool = {
     name: 'UpdateNPC',
     description: `This tool updates an NPC with given ID.
         The actor ID and schema data should come from the response of the create or lookup NPC tool, which includes the full actor data structure.
@@ -37,5 +37,5 @@ const CreateNPCTool: FunctionTool = {
     }
 };
 
-export default CreateNPCTool;
+export default UpdateNPCTool;
  
