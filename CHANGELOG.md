@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.8...v1.0.9) (2026-02-06)
+
+
+### Bug Fixes
+
+* move bundle to rollup ([af7e61a](https://github.com/marmotherder/foundryvtt-agent-chat/commit/af7e61a1600b54ff846d7b228f5a318e7d8f00dc))
+
 ## [1.0.8](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.7...v1.0.8) (2026-02-06)
 
 
