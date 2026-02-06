@@ -42,13 +42,18 @@ export const Tools: FunctionTool[] = [
             example: "2d6+1"
         },
         callTool: async (args: Arguments<string, unknown>) => {
-            if (!args.diceroll) {
-                return "Failed to roll dice: no valid 'diceroll' argument provided.";
+            if (!args || !args.diceroll) {
+                return "Failed to roll dice: no 'diceroll' argument provided.";
             }
-
-            console.log(`this is where I would log a roll, but for now I'm just capturing it: ${args.diceroll}`);
-
-            return "Dice rolled (see logs for details)."
+            try {
+                const roll = new Roll(args.diceroll as string);
+                const result =await roll.roll();
+                return `Successfully rolled ${args.diceroll}: ${result.result}`;
+            }
+            catch (err) {
+                const message = err instanceof Error ? err.message : String(err);
+                return `Invalid dice expression: ${message}`;
+            }
         }
     }
 ];
