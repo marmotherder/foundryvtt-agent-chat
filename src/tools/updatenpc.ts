@@ -21,6 +21,7 @@ const UpdateNPCTool: FunctionTool = {
         }
     },
     callTool: async (args: Arguments<string, unknown>) => {
+        console.log(`UpdateNPC called with arguments: ${JSON.stringify(args)}`);
         if (!args) {
             return "Failed to update NPC: no arguments provided.";
         }

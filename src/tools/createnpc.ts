@@ -21,6 +21,7 @@ const CreateNPCTool: FunctionTool = {
         }
     },
     callTool: async (args: Arguments<string, unknown>) => {
+        console.log(`CreateNPC called with arguments: ${JSON.stringify(args)}`);
         if (!args) {
             return "Failed to create NPC: no arguments provided.";
         }

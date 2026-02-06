@@ -12,6 +12,7 @@ const RollDiceTool: FunctionTool = {
         example: "2d6+1"
     },
     callTool: async (args: Arguments<string, unknown>) => {
+        console.log(`RollDice called with arguments: ${JSON.stringify(args)}`);
         if (!args || !args.diceroll) {
             return "Failed to roll dice: no 'diceroll' argument provided.";
         }

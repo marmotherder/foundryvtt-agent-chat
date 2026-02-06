@@ -48,14 +48,14 @@ Hooks.on("chatMessage", (chatLog: ChatLog<ChatLog.RenderContext, ChatLog.Configu
     speaker: ReturnType<ChatMessage.ImplementationClass["getSpeaker"]>;
 }) => {
   // Only handle the command we care about
-  if (!message.startsWith("/agent")) return;
+  if (!message.startsWith("!agent")) return;
 
-  if (message.startsWith("/agent restart")) {
+  if (message.startsWith("!agent restart")) {
     agent.RestartChat();
     return;
   }
 
-  const prompt = message.replace("/agent", "").trim();
+  const prompt = message.replace("!agent", "").trim();
 
   agent.Chat(prompt).then(response => {
     ChatMessage.create({
