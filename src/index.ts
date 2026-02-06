@@ -1,7 +1,7 @@
 import GoogleAgent from "./agent/google";
 
-export const moduleName = "foundryvtt-agent-chat"
-export const settingAPIKey = "apiKey";
+const moduleName = "foundryvtt-agent-chat"
+const settingAPIKey = "apiKey";
 
 let agent: GoogleAgent;
 
@@ -33,12 +33,8 @@ Hooks.once("ready", () => {
   console.log(`${moduleName} | Ready`);
 });
 
-export function simplePing(): string {
-  return `${moduleName} pong`;
-}
-
 // Helper to read configured API key
-export function getApiKey(): string {
+function getApiKey(): string {
   if (typeof game === 'undefined' || !game.settings) {
     console.warn(`${moduleName} | game or game properties not available during init - unable to read API key`);
     return "";
