@@ -32,9 +32,7 @@ export default class GoogleAgent {
                 async callTool(functionCalls: FunctionCall[]): Promise<Part[]> {
                     let results: string[] = [];
                     for (const call of functionCalls) {
-                        if (call.name === "RollDice") {
-                            results.push(await tool.callTool(call.args as Record<string, unknown>));
-                        }
+                        results.push(await tool.callTool(call.args as Record<string, unknown>));
                     }
                     return [
                         { text: results.join("\n") },
