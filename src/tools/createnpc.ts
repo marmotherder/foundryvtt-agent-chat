@@ -34,7 +34,10 @@ const CreateNPCTool: FunctionTool = {
             let actor = await Actor.implementation.create({
                 name: args.name as string,
                 folder: folderId,
-                type: "npc" as any
+                type: "npc" as any,
+                prototypeToken: {
+                    name: args.name as string
+                }
             });
             
             return `Successfully created NPC: ${JSON.stringify(actor)}`;
