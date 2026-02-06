@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.7...v1.0.8) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove ncc minify ([841ccd5](https://github.com/marmotherder/foundryvtt-agent-chat/commit/841ccd5dc1c4fb3b9c9bb3ed15d4cd7ecfb08bce))
+
 ## [1.0.7](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.6...v1.0.7) (2026-02-06)
 
 
