@@ -1,0 +1,14 @@
+{
+  "foundryvtt-agent-chat": {
+    "settings": {
+      "apiKey": {
+        "name": "API Key",
+        "hint": "Your API key for the agent service."
+      }
+    },
+    "ui": {
+      "agentReply": "Agent reply",
+      "welcome": "Hello, {name}!"
+    }
+  }
+}

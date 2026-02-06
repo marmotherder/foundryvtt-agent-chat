@@ -1,39 +1,39 @@
-export const MODULE_NAME = "foundryvtt-agent-chat";
-export const SETTING_API_KEY = "apiKey";
+export const moduleName = "foundryvtt-agent-chat"
+export const settingAPIKey = "apiKey";
 
 Hooks.once("init", () => {
-  console.log(`${MODULE_NAME} | Initializing module`);
+  console.log(`${moduleName} | Initializing module`);
 
-  if (typeof game === 'undefined' || !game.settings) {
-    console.warn(`${MODULE_NAME} | game or game.settings not available during init - skipping settings registration`);
+  if (typeof game === 'undefined' || !game.settings || !game.i18n) {
+    console.warn(`${moduleName} | game or game properties not available during init - skipping settings registration`);
     return;
   }
 
-  game.settings.register(MODULE_NAME, SETTING_API_KEY, {
-    name: "API Key",
-    hint: "Your API key for the agent service.",
+  game.settings.register(moduleName, settingAPIKey, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.hint"),
     scope: "client",
     config: true,
     type: String,
     default: "",
     onChange: (value: string) => {
-      console.log(`${MODULE_NAME} | Setting ${SETTING_API_KEY} changed`);
+      console.log(`${moduleName} | Setting ${settingAPIKey} changed`);
     }
   });
 });
 
 Hooks.once("ready", () => {
-  console.log(`${MODULE_NAME} | Ready`);
+  console.log(`${moduleName} | Ready`);
 });
 
 export function simplePing(): string {
-  return `${MODULE_NAME} pong`;
+  return `${moduleName} pong`;
 }
 
 // Helper to read configured API key
 export function getApiKey(): string {
   if (typeof game === 'undefined' || !game.settings) return "";
-  return (game.settings.get(MODULE_NAME, SETTING_API_KEY) as string) ?? "";
+  return (game.settings.get(moduleName, settingAPIKey) as string) ?? "";
 }
 
 Hooks.on("chatMessage", (chatLog: ChatLog<ChatLog.RenderContext, ChatLog.Configuration, ChatLog.RenderOptions>, message: string, chatData: {

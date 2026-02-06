@@ -51,6 +51,7 @@ jobs:
           --recurse-paths \
           ./module.zip    \
           module.json     \
+          languages/      \
           dist/
 
     - name: Upload Release Manifest
