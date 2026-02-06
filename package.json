@@ -6,8 +6,8 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && ncc build dist/src/index.js -o dist --minify",
-    "bundle": "ncc build dist/src/index.js -o dist --minify",
+    "build": "tsc && ncc build dist/src/index.js -o dist",
+    "bundle": "ncc build dist/src/index.js -o dist",
     "watch": "tsc -w",
     "test": "jest"
   },
