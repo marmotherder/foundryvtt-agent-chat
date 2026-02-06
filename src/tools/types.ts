@@ -17,7 +17,7 @@ export interface FunctionToolParameter {
     title?: string;
     type?: Type;
     description?: string;
-    example?: string;
+    example?: unknown;
     properties?: Record<string, Arguments<string, unknown>>;
     propertyOrdering?: string[];
 }
