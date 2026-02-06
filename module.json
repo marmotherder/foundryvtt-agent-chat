@@ -2,7 +2,7 @@
   "id": "foundryvtt-agent-chat",
   "title": "Foundryvtt Agent Chat",
   "description": "A FoundryVTT module to provide agent-driven chat features.",
-  "version": "0.0.1",
+  "version": "#{VERSION}#",
   "author": "Your Name",
   "authors": [
     {

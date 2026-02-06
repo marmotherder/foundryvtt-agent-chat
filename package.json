@@ -6,7 +6,7 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build --clean",
     "watch": "tsc -w",
     "test": "jest"
   },
