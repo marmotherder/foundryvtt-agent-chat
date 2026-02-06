@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.2...v1.0.3) (2026-02-06)
+
+
+### Bug Fixes
+
+* set compatability ([c61c1bd](https://github.com/marmotherder/foundryvtt-agent-chat/commit/c61c1bd5f71dea7101bdb23fe9719c20eb4defeb))
+* set scope to world ([4a2f553](https://github.com/marmotherder/foundryvtt-agent-chat/commit/4a2f5536015a39cbbbfe732bbf4e1d3e5f229b57))
+
 ## [1.0.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.1...v1.0.2) (2026-02-06)
 
 
