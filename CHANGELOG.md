@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.10](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.9...v1.0.10) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove index exports as redundant ([90d5e13](https://github.com/marmotherder/foundryvtt-agent-chat/commit/90d5e13aff0d03c53c8cc434e474c201667d0236))
+
 ## [1.0.9](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.8...v1.0.9) (2026-02-06)
 
 
