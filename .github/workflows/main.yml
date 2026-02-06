@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
+      pull-requests: write
 
     steps:
     - name: Checkout Repository
@@ -40,5 +42,33 @@ jobs:
     - name: Build Module
       run: npm run build
 
-    - name: Run Semantic Release CLI
-      run : npx semantic-release
+    - uses: googleapis/release-please-action@v4
+      id: release
+      with:
+        release-type: node
+
+    - name: Modify Module Manifest With Release-Specific Values
+      if: ${{ steps.release.outputs.release_created }}
+      uses: cschleiden/replace-tokens@v1
+      with:
+        files: 'module.json'
+      env:
+        VERSION: ${{ steps.release.outputs.version }}
+        URL: ${{ env.project_url }}
+        MANIFEST: ${{ env.latest_manifest_url }}
+        DOWNLOAD: ${{ env.release_module_url }}
+
+    - name: Create Module Archive
+      if: ${{ steps.release.outputs.release_created }}
+      run: |
+        zip               \
+          --recurse-paths \
+          ./module.zip    \
+          module.json     \
+          dist/
+
+    - name: Upload Release Artifact
+      if: ${{ steps.release.outputs.release_created }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh release upload ${{ steps.release.outputs.tag_name }} ./module.zip
