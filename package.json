@@ -11,11 +11,14 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@jest/globals": "^30.2.0",
     "@types/jest": "^29.5.2",
     "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^13.346.0-beta.20250812191140",
-    "jest": "^29.6.1",
-    "jest-environment-jsdom": "^29.6.1",
-    "ts-jest": "^29.1.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@google/genai": "^1.40.0"
   }
 }

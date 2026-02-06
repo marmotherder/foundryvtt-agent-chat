@@ -1,5 +1,9 @@
+import GoogleAgent from "./agent/google";
+
 export const moduleName = "foundryvtt-agent-chat"
 export const settingAPIKey = "apiKey";
+
+let agent: GoogleAgent;
 
 Hooks.once("init", () => {
   console.log(`${moduleName} | Initializing module`);
@@ -16,10 +20,13 @@ Hooks.once("init", () => {
     config: true,
     type: String,
     default: "",
+    requiresReload: true,
     onChange: (value: string) => {
       console.log(`${moduleName} | Setting ${settingAPIKey} changed`);
     }
   });
+
+  agent = new GoogleAgent(getApiKey());
 });
 
 Hooks.once("ready", () => {
@@ -32,7 +39,11 @@ export function simplePing(): string {
 
 // Helper to read configured API key
 export function getApiKey(): string {
-  if (typeof game === 'undefined' || !game.settings) return "";
+  if (typeof game === 'undefined' || !game.settings) {
+    console.warn(`${moduleName} | game or game properties not available during init - unable to read API key`);
+    return "";
+  }
+
   return (game.settings.get(moduleName, settingAPIKey) as string) ?? "";
 }
 
@@ -40,8 +51,27 @@ Hooks.on("chatMessage", (chatLog: ChatLog<ChatLog.RenderContext, ChatLog.Configu
     user: string;
     speaker: ReturnType<ChatMessage.ImplementationClass["getSpeaker"]>;
 }) => {
-  if (message.startsWith("/agent")) {
-    const apiKey = getApiKey(); 
-    console.log(apiKey);
+  // Only handle the command we care about
+  if (!message.startsWith("/agent")) return;
+
+  if (message.startsWith("/agent restart")) {
+    agent.RestartChat();
+    return;
   }
+
+  const prompt = message.replace("/agent", "").trim();
+
+  agent.Chat(prompt).then(response => {
+    ChatMessage.create({
+      content: response,
+      speaker: chatData.speaker,
+    });
+  }).catch(error => {
+    console.error(`${moduleName} | Error processing agent chat message:`, error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    ui?.notifications?.warn(`${moduleName}: failed to process agent chat message — ${errMsg}`);
+  });
+
+  // Prevent Foundry from also creating the original chat message for this command
+  return false;
 });
