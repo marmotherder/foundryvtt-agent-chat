@@ -17,7 +17,7 @@
     "verified": 13,
     "maximum": 13
   },
-  "esmodules": ["dist/src/index.js"],
+  "esmodules": ["dist/index.js"],
   "styles": [],
   "scripts": [],
   "packs": [],

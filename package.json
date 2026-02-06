@@ -6,13 +6,15 @@
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
+    "build": "tsc && ncc build dist/src/index.js -o dist --minify",
+    "bundle": "ncc build dist/src/index.js -o dist --minify",
     "watch": "tsc -w",
     "test": "jest"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
     "@types/jest": "^29.5.2",
+    "@vercel/ncc": "^0.36.1",
     "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^13.346.0-beta.20250812191140",
     "jest": "^30.2.0",
     "ts-jest": "^29.4.6",
