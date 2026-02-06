@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.3...v1.0.4) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove dist ([ae4da8f](https://github.com/marmotherder/foundryvtt-agent-chat/commit/ae4da8fe238a0a6e140430a1055442843fd268ce))
+
 ## [1.0.3](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.2...v1.0.3) (2026-02-06)
 
 
