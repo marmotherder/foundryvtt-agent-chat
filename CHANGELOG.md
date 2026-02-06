@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.11...v1.0.12) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove redundant comment ([112dd56](https://github.com/marmotherder/foundryvtt-agent-chat/commit/112dd56bb98b53d9b9f967b726f309c27da0c99d))
+
 ## [1.0.11](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.10...v1.0.11) (2026-02-06)
 
 
