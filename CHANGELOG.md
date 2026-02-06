@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.13](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.12...v1.0.13) (2026-02-06)
+
+
+### Bug Fixes
+
+* remove old dice roll call in def ([4565529](https://github.com/marmotherder/foundryvtt-agent-chat/commit/4565529d16912eb4a6e45adafd33921c5e1319af))
+
 ## [1.0.12](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.11...v1.0.12) (2026-02-06)
 
 
