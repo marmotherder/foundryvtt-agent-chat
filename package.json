@@ -2,7 +2,7 @@
   "name": "foundryvtt-agent-chat",
   "title": "Agent Chat",
   "description": "A FoundryVTT module to provide agent-driven chat features.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Your Name",
   "license": "MIT",
   "scripts": {
