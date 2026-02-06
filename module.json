@@ -1,0 +1,24 @@
+{
+  "name": "foundryvtt-agent-chat",
+  "title": "Agent Chat",
+  "description": "A FoundryVTT module to provide agent-driven chat features.",
+  "version": "0.0.1",
+  "author": "Your Name",
+  "authors": [
+    {
+      "name": "Your Name",
+      "url": "",
+      "email": ""
+    }
+  ],
+  "license": "MIT",
+  "minimumCoreVersion": "13",
+  "compatibleCoreVersion": "13",
+  "url": "",
+  "esmodules": ["dist/index.js"],
+  "styles": [],
+  "scripts": [],
+  "packs": [],
+  "download": "",
+  "manifest": "module.json"
+}
