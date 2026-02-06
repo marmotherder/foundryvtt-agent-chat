@@ -12,8 +12,11 @@
     }
   ],
   "license": "MIT",
-  "minimumCoreVersion": "13",
-  "compatibleCoreVersion": "13",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13,
+    "maximum": 13
+  },
   "esmodules": ["dist/index.js"],
   "styles": [],
   "scripts": [],
