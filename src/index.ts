@@ -68,6 +68,5 @@ Hooks.on("chatMessage", (chatLog: ChatLog<ChatLog.RenderContext, ChatLog.Configu
     ui?.notifications?.warn(`${moduleName}: failed to process agent chat message — ${errMsg}`);
   });
 
-  // Prevent Foundry from also creating the original chat message for this command
   return false;
 });
