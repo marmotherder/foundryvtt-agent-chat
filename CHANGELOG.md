@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.6...v1.0.7) (2026-02-06)
+
+
+### Bug Fixes
+
+* add ncc to build ([79ce9a0](https://github.com/marmotherder/foundryvtt-agent-chat/commit/79ce9a07c32f559cc0f442b783f16b19d326c48b))
+
 ## [1.0.6](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.5...v1.0.6) (2026-02-06)
 
 
