@@ -11,14 +11,18 @@ const UpdateNPCTool: FunctionTool = {
         description: 'Data for updating the NPC.',
         properties: {
             id: {
+                title: 'id',
                 type: Type.STRING,
                 description: 'The ID of the NPC to update.'
             },        
             data: {
+                title: 'data',
                 type: Type.OBJECT,
-                description: 'Additional data to update the NPC with, based off of the schema provided by the create or lookup NPC tool.'
+                description: 'Additional data to update the NPC with, based off of the schema provided by the create or lookup NPC tool.',
+                example: {"system": {"health": {"value": 1, "max": 10}}}
             }
-        }
+        },
+        required: ['id', 'data']
     },
     callTool: async (args: Arguments<string, unknown>) => {
         console.log(`UpdateNPC called with arguments: ${JSON.stringify(args)}`);
@@ -30,12 +34,7 @@ const UpdateNPCTool: FunctionTool = {
             if (!actor) {
                 return `Failed to update NPC: no actor found with ID ${args.id}`;
             }
-            let data = args.data as Record<string, unknown>
-            data.name = actor.name;
-            if (!data.prototypeToken) {
-                data.prototypeToken = actor.prototypeToken;
-            }
-            await actor.update(args.data as Record<string, unknown>, {diff: true});
+            await actor.update(args.data as Record<string, unknown>);
             
             return `Successfully updated NPC: ${JSON.stringify(actor)}`;
         }

@@ -7,7 +7,7 @@ export default class GoogleAgent {
     config: GenerateContentConfig;
     chat: Chat;
 
-    constructor(apiKey: string, temperature = 0.2, maxOutputTokens = 2048) {
+    constructor(apiKey: string, additionalSystemInstructions = "", temperature = 0.2, maxOutputTokens = 2048) {
         this.ai = new GoogleGenAI({apiKey: apiKey});
 
         let tools: CallableTool[] = [];
@@ -23,7 +23,9 @@ export default class GoogleAgent {
                                     title: tool.parameters.title,
                                     type: tool.parameters.type,
                                     description: tool.parameters.description,
-                                    example: tool.parameters.example
+                                    example: tool.parameters.example,
+                                    properties: tool.parameters.properties,
+                                    propertyOrdering: tool.parameters.propertyOrdering
                                 }
                             }
                         ]
@@ -42,7 +44,7 @@ export default class GoogleAgent {
         }
 
         this.config = {
-                systemInstruction: SystemInstruction,
+                systemInstruction: `${SystemInstruction}\n${additionalSystemInstructions}`,
                 temperature: temperature,
                 maxOutputTokens: maxOutputTokens,
                 tools: tools

@@ -2,6 +2,7 @@ import GoogleAgent from "./agent/google";
 
 const moduleName = "foundryvtt-agent-chat"
 const settingAPIKey = "apiKey";
+const settingAdditionalSystemInstructions = "additionalSystemInstructions";
 
 let agent: GoogleAgent;
 
@@ -26,9 +27,25 @@ Hooks.once("init", () => {
     }
   });
 
-  agent = new GoogleAgent(getApiKey());
-});
+  game.settings.register(moduleName, settingAdditionalSystemInstructions, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.additionalSystemInstructions.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.additionalSystemInstructions.hint"),
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+    requiresReload: true,
+    onChange: (value: string) => {
+      console.log(`${moduleName} | Setting ${settingAdditionalSystemInstructions} changed`);
+    }
+  });
 
+  const gameSystemInstruction = game.system?.description ? `The game system being used is ${game.system.description}.` : "";
+  const additionalSystemInstructions = (game.settings.get(moduleName, settingAdditionalSystemInstructions) as string) ?? "";
+
+  agent = new GoogleAgent(getApiKey(), `${gameSystemInstruction}\n${additionalSystemInstructions}`);
+});
+  
 Hooks.once("ready", () => {
   console.log(`${moduleName} | Ready`);
 });
