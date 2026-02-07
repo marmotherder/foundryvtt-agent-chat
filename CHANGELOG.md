@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.16](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.15...v1.0.16) (2026-02-07)
+
+
+### Bug Fixes
+
+* take name from api object ([b6d1809](https://github.com/marmotherder/foundryvtt-agent-chat/commit/b6d18098d83e0ddbb095b40f3518dd05e4cc0bcb))
+
 ## [1.0.15](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.14...v1.0.15) (2026-02-07)
 
 
