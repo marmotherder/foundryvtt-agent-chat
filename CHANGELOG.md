@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.15](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.14...v1.0.15) (2026-02-07)
+
+
+### Bug Fixes
+
+* always use name for updates ([4786638](https://github.com/marmotherder/foundryvtt-agent-chat/commit/4786638520ed9b306def2cf794e42b10c0dcd2c4))
+
 ## [1.0.14](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.13...v1.0.14) (2026-02-06)
 
 
