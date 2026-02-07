@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.16...v1.1.0) (2026-02-07)
+
+
+### Features
+
+* add game system instructions ([aff708b](https://github.com/marmotherder/foundryvtt-agent-chat/commit/aff708b3f6669ad4962edaf67eb223098a37c18a))
+
 ## [1.0.16](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.15...v1.0.16) (2026-02-07)
 
 
