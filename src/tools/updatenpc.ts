@@ -13,11 +13,7 @@ const UpdateNPCTool: FunctionTool = {
             id: {
                 type: Type.STRING,
                 description: 'The ID of the NPC to update.'
-            },
-            name: {
-                type: Type.STRING,
-                description: 'The name of the NPC being updated.'
-            },            
+            },        
             data: {
                 type: Type.OBJECT,
                 description: 'Additional data to update the NPC with, based off of the schema provided by the create or lookup NPC tool.'
@@ -30,28 +26,17 @@ const UpdateNPCTool: FunctionTool = {
             return "Failed to update NPC: no arguments provided.";
         }
         try {
-            const id = args.id as string | undefined;
-            if (!id) return `Failed to update NPC: missing id`;
-
-            const actor = Actor.implementation.get(id);
-            if (!actor) return `Failed to update NPC: no actor found with ID ${id}`;
-
-            const incomingName = args.name as string | undefined;
-            const original = args.data && typeof args.data === 'object'
-                ? args.data as Record<string, any>
-                : {};
-
-            const data: Record<string, any> = { ...original };
-
-            if (incomingName) data.name = incomingName;
-
-            data.prototypeToken = { ...(data.prototypeToken as Record<string, any> || {}) };
-            if (incomingName) data.prototypeToken.name = incomingName;
-
-            console.log(`UpdateNPC: updating actor ${id} with`, JSON.stringify(data));
-
-            await actor.update(data as Record<string, unknown>);
-
+            const actor = Actor.implementation.get(args.id as string);
+            if (!actor) {
+                return `Failed to update NPC: no actor found with ID ${args.id}`;
+            }
+            let data = args.data as Record<string, unknown>
+            data.name = actor.name;
+            if (!data.prototypeToken) {
+                data.prototypeToken = actor.prototypeToken;
+            }
+            await actor.update(args.data as Record<string, unknown>, {diff: true});
+            
             return `Successfully updated NPC: ${JSON.stringify(actor)}`;
         }
         catch (err) {
