@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.1...v1.2.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* corrected issue with tools being called inappropriately ([c7fa691](https://github.com/marmotherder/foundryvtt-agent-chat/commit/c7fa6912345113c3a2c7186fe5a1b9a664b8faab))
+
 ## [1.2.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.0...v1.2.1) (2026-02-10)
 
 
