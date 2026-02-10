@@ -1,0 +1,20 @@
+{
+  "name": "foundryvtt-agent-chat-ollamaproxy",
+  "title": "Ollama Proxy",
+  "description": "A basic script for handling CORS requests to an Ollama API.",
+  "version": "0.0.1",
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && rollup -c",
+    "bundle": "rollup -c",
+    "watch": "tsc -w",
+    "test": "jest"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^3.0.5"
+  }
+}

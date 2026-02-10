@@ -1,6 +1,6 @@
 # Foundry VTT Agent Chat
 
-Agent Chat is a Foundry VTT module that integrates a tool supporting LLM (currently only Gemini) directly into the game's chat interface. It allows Game Masters to interact with an AI agent that can perform actions within the world, such as creating NPCs, rolling dice, and querying game data.
+Agent Chat is a Foundry VTT module that integrates LLM-based agents into the game's chat interface. It currently supports Google Gemini and local Ollama instances. The agent can perform actions within the world such as creating NPCs, rolling dice, and querying game data.
 
 ## Features
 
@@ -20,13 +20,24 @@ The module provides an intelligent agent capable of interacting with Foundry VTT
 
 ## Configuration
 
-After installation, you must configure the module to use the Google Gemini API:
+After installation, configure which provider the module should use and any provider-specific settings in Foundry's Configure Settings for the world.
 
-1.  Navigate to **Configure Settings** within your world.
-2.  Locate the **Agent Chat** section.
-3.  Enter your **Google Gemini API Key**.
-4.  (Optional) Provide **Additional System Instructions** to guide the agent's personality or specific house rules.
-5.  Save settings and reload the application.
+Settings added by this module
+
+- `provider` (choice): Select between `Google Gemini` and `Ollama`.
+- `model` (string): Model identifier for the selected provider (defaults to `gemini-3-flash-preview` for Google).
+- `temperature` (number): Sampling temperature for the agent (default `0.2`).
+- `endpoint` (string): Base endpoint for Ollama (or a proxy) — leave empty for the default local Ollama address.
+- `apiKey` (string): API key for Google Gemini or Ollama Cloud, if applicable.
+- `maxOutputTokens` (number): Max tokens when using Google Gemini (default `2048`).
+- `additionalSystemInstructions` (string): Extra system instructions appended to the agent's system prompt.
+
+Provider notes
+
+- Google Gemini: enter a valid API key in `apiKey` and choose the appropriate `model` and `maxOutputTokens`.
+- Ollama (local or cloud): set `provider` to Ollama and configure `endpoint` to point at your Ollama server or a CORS-enabled proxy. For local Ollama, the default server is `http://127.0.0.1:11434`. If you use Ollama Cloud, provide the cloud `host` and an API key in `apiKey` (via a proxy or environment-secured server-side code).
+
+If you run Foundry in a browser context, note that a direct request from the renderer to `http://127.0.0.1:11434` will be blocked by CORS unless the Ollama server provides the appropriate headers. The recommended approach is to run a small local proxy that adds CORS headers and forwards requests to Ollama (see `ollamaproxy/README.md`).
 
 ## Usage
 
@@ -66,3 +77,8 @@ npm test
 ## License
 
 This project is licensed under the MIT License.
+
+## Notes
+
+- When changing provider or model settings, a reload may be required because the module initializes the agent during `init`.
+- Make tools idempotent where possible — the agent may request the same tool multiple times while reasoning.

@@ -10,7 +10,7 @@ export default class OllamaAgent {
     temperature: number;
     messages: Message[];
 
-    constructor(model: string, additionalSystemInstructions = "", temperature = 0.2, endpoint = "http://127.0.0.1:11434") {
+    constructor(model: string, additionalSystemInstructions = "", temperature = 0.2, endpoint = "http://127.0.0.1:5000") {
         this.model = model;
         this.systemInstruction = `${SystemInstruction}\n${additionalSystemInstructions}`;
         this.tools = [];
