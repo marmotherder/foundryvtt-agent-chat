@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.0...v1.3.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* use stdlibless ollama impl ([4912fca](https://github.com/marmotherder/foundryvtt-agent-chat/commit/4912fca6799a55bbad74be809576078add8d5086))
+
 ## [1.3.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.2...v1.3.0) (2026-02-10)
 
 
