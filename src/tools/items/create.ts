@@ -1,7 +1,7 @@
 import { Arguments, FunctionTool, Type } from "../types";
 
 const Create: FunctionTool = {
-    name: 'Create Item',
+    name: 'CreateItem',
     description: `This tool creates a basic Item with the specified name.
         Items are typically equipment, spells, or other objects that can be owned by Actors in Foundry. The created Item will be based on the default prototype for the specified type, which may vary based on the system being used.
         It will respond with the full item data, which can then be used to update the Item with additional system specific data based on the json schema of the response.`,
