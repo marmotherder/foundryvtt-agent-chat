@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.1...v1.3.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* ignore the interface ([478a29b](https://github.com/marmotherder/foundryvtt-agent-chat/commit/478a29b547785dc632d23aa7900202ebd7ba23cc))
+
 ## [1.3.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.0...v1.3.1) (2026-02-10)
 
 
