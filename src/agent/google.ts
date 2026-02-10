@@ -34,7 +34,9 @@ export default class GoogleAgent {
                 async callTool(functionCalls: FunctionCall[]): Promise<Part[]> {
                     let results: string[] = [];
                     for (const call of functionCalls) {
-                        results.push(await tool.callTool(call.args as Record<string, unknown>));
+                        if (call.name === tool.name) {
+                            results.push(await tool.callTool(call.args as Record<string, unknown>));
+                        }
                     }
                     return [
                         { text: results.join("\n") },
