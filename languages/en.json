@@ -1,14 +1,34 @@
 {
   "foundryvtt-agent-chat": {
     "settings": {
+      "provider": {
+        "name": "LLM Provider",
+        "hint": "The provider of the large language model."
+      },
+      "model": {
+        "name": "Model",
+        "hint": "The model of the large language model."
+      },
+      "additionalSystemInstructions": {
+        "name": "Additional System Instructions",
+        "hint": "Additional instructions to the agent. Use this to customize the agent's behavior. For example, you can tell the agent to roleplay as a specific character, or to have a specific tone."
+      },
+      "temperature": {
+        "name": "Temperature",
+        "hint": "The creativity of the agent's responses. Higher values will make the agent more creative, while lower values will make it more focused and deterministic."
+      },
+      "endpoint": {
+        "name": "(Optional) Endpoint",
+        "hint": "The endpoint for the agent service. For example, if you're using Ollama, this would be the URL of your Ollama instance (e.g., http://127.0.0.1:11434)."
+      },
       "apiKey": {
-        "name": "API Key",
-        "hint": "Your API key for the agent service."
+        "name": "(Optional) API Key",
+        "hint": "Your API key for the agent service, used for provider authentication."
+      },
+      "maxOutputTokens": {
+        "name": "(Optional) Max Output Tokens",
+        "hint": "The maximum number of tokens in the agent's output."
       }
-    },
-    "ui": {
-      "agentReply": "Agent reply",
-      "welcome": "Hello, {name}!"
     }
   }
 }

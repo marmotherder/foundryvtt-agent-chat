@@ -1,10 +1,18 @@
+import Agent from "./agent/agent";
+
 import GoogleAgent from "./agent/google";
+import OllamaAgent from "./agent/ollama";
 
 const moduleName = "foundryvtt-agent-chat"
-const settingAPIKey = "apiKey";
+const settingProvider = "provider";
+const settingModel = "model";
 const settingAdditionalSystemInstructions = "additionalSystemInstructions";
+const settingTemperature = "temperature";
+const settingEndpoint = "endpoint";
+const settingAPIKey = "apiKey";
+const settingMaxOutputTokens = "maxOutputTokens";
 
-let agent: GoogleAgent;
+let agent: Agent;
 
 Hooks.once("init", () => {
   console.log(`${moduleName} | Initializing module`);
@@ -14,16 +22,33 @@ Hooks.once("init", () => {
     return;
   }
 
-  game.settings.register(moduleName, settingAPIKey, {
-    name: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.name"),
-    hint: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.hint"),
+  game.settings.register(moduleName, settingProvider, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.provider.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.provider.hint"),
     scope: "world",
     config: true,
     type: String,
-    default: "",
+    choices: {
+      google: "Google Gemini",
+      ollama: "Ollama"
+    },
+    default: "google",
     requiresReload: true,
     onChange: (value: string) => {
-      console.log(`${moduleName} | Setting ${settingAPIKey} changed`);
+      console.log(`${moduleName} | Setting ${settingProvider} changed`);
+    }
+  });
+
+  game.settings.register(moduleName, settingModel, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.model.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.model.hint"),
+    scope: "world",
+    config: true,
+    type: String,
+    default: "gemini-3-flash-preview",
+    requiresReload: true,
+    onChange: (value: string) => {
+      console.log(`${moduleName} | Setting ${settingModel} changed`);
     }
   });
 
@@ -40,10 +65,77 @@ Hooks.once("init", () => {
     }
   });
 
+  game.settings.register(moduleName, settingTemperature, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.temperature.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.temperature.hint"),
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 0.2,
+    requiresReload: true,
+    onChange: (value: number) => {
+      console.log(`${moduleName} | Setting ${settingTemperature} changed`);
+    }
+  });
+
+  game.settings.register(moduleName, settingEndpoint, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.endpoint.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.endpoint.hint"),
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+    requiresReload: true,
+    onChange: (value: string) => {
+      console.log(`${moduleName} | Setting ${settingEndpoint} changed`);
+    }
+  });
+
+  game.settings.register(moduleName, settingAPIKey, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.apiKey.hint"),
+    scope: "world",
+    config: true,
+    type: String,
+    default: "",
+    requiresReload: true,
+    onChange: (value: string) => {
+      console.log(`${moduleName} | Setting ${settingAPIKey} changed`);
+    }
+  });
+
+  game.settings.register(moduleName, settingMaxOutputTokens, {
+    name: game.i18n.localize("foundryvtt-agent-chat.settings.maxOutputTokens.name"),
+    hint: game.i18n.localize("foundryvtt-agent-chat.settings.maxOutputTokens.hint"),
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 2048,
+    requiresReload: true,
+    onChange: (value: number) => {
+      console.log(`${moduleName} | Setting ${settingMaxOutputTokens} changed`);
+    }
+  });
+
   const gameSystemInstruction = game.system?.description ? `The game system being used is ${game.system.description}.` : "";
   const additionalSystemInstructions = (game.settings.get(moduleName, settingAdditionalSystemInstructions) as string) ?? "";
 
-  agent = new GoogleAgent(getApiKey(), `${gameSystemInstruction}\n${additionalSystemInstructions}`);
+  const model = game.settings.get(moduleName, settingModel) as string;
+  const temperature = game.settings.get(moduleName, settingTemperature) as number;
+
+  switch (game.settings.get(moduleName, settingProvider) as string) {
+    case "google":
+      const maxOutputTokens = game.settings.get(moduleName, settingMaxOutputTokens) as number;
+      agent = new GoogleAgent(model, getApiKey(), `${gameSystemInstruction}\n${additionalSystemInstructions}`, temperature, maxOutputTokens);
+      break;
+    case "ollama":
+      const endpoint = game.settings.get(moduleName, settingEndpoint) as string;
+      agent = new OllamaAgent(model, `${gameSystemInstruction}\n${additionalSystemInstructions}`, temperature, endpoint);
+      break;
+    default:
+      console.warn(`${moduleName} | Invalid provider setting - defaulting to Google Gemini`);
+      agent = new GoogleAgent(model, getApiKey(), `${gameSystemInstruction}\n${additionalSystemInstructions}`);
+  }
 });
   
 Hooks.once("ready", () => {

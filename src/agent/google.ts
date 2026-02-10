@@ -6,9 +6,11 @@ export default class GoogleAgent {
     ai: GoogleGenAI;
     config: GenerateContentConfig;
     chat: Chat;
+    model: string
 
-    constructor(apiKey: string, additionalSystemInstructions = "", temperature = 0.2, maxOutputTokens = 2048) {
+    constructor(model: string, apiKey: string, additionalSystemInstructions = "", temperature = 0.2, maxOutputTokens = 2048) {
         this.ai = new GoogleGenAI({apiKey: apiKey});
+        this.model = model;
 
         let tools: CallableTool[] = [];
         for (const tool of Tools) {
@@ -52,14 +54,14 @@ export default class GoogleAgent {
                 tools: tools
             }
         this.chat = this.ai.chats.create({
-            model: "gemini-3-flash-preview",
+            model: model,
             config: this.config
         });
     }
 
     RestartChat() {
         this.chat = this.ai.chats.create({
-            model: "gemini-3-flash-preview",
+            model: this.model,
             config: this.config
         });
     }

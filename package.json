@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.40.0",
-    "@league-of-foundry-developers/foundry-vtt-types": "^13.340.1"
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.340.1",
+    "ollama": "^0.6.3"
   }
 }
