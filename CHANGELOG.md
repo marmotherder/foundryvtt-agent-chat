@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.1.0...v1.2.0) (2026-02-10)
+
+
+### Features
+
+* add new item, actor, and compendium fns ([d5e426f](https://github.com/marmotherder/foundryvtt-agent-chat/commit/d5e426f8d94aeee200b8d7cf9b106c31ad1314d2))
+
 ## [1.1.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.0.16...v1.1.0) (2026-02-07)
 
 
