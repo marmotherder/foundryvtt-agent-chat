@@ -15,7 +15,7 @@ The module provides an intelligent agent capable of interacting with Foundry VTT
 1.  Open the Foundry VTT Setup screen.
 2.  Go to the **Modules** tab.
 3.  Click **Install Module**.
-4.  Paste the manifest URL: `https://github.com/your-username/foundryvtt-agent-chat/releases/latest/download/module.json`
+4.  Paste the manifest URL: `https://github.com/marmotherder/foundryvtt-agent-chat/releases/latest/download/module.json`
 5.  Click **Install**.
 
 ## Configuration
