@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.2...v1.3.0) (2026-02-10)
+
+
+### Features
+
+* enhanced provider support & options ([385e232](https://github.com/marmotherder/foundryvtt-agent-chat/commit/385e232e6c44f1747486631c39b13714a0f90054))
+
 ## [1.2.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.1...v1.2.2) (2026-02-10)
 
 
