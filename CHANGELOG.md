@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.2...v1.3.3) (2026-02-10)
+
+
+### Bug Fixes
+
+* update for on ollama tools ([2c0123e](https://github.com/marmotherder/foundryvtt-agent-chat/commit/2c0123e18e2768d3f7331cb80be0f91161e0a172))
+
 ## [1.3.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.1...v1.3.2) (2026-02-10)
 
 
