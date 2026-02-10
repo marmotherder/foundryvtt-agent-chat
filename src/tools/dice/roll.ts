@@ -1,6 +1,6 @@
-import { Arguments, FunctionTool, Type } from "./types"
+import { Arguments, FunctionTool, Type } from "../types"
 
-const RollDiceTool: FunctionTool = {
+const RollTool: FunctionTool = {
     name: "RollDice",
     description: `This tool allows the agent to roll dice in Foundry VTT. 
                     The agent can specify the type and number of dice to roll, 
@@ -28,4 +28,4 @@ const RollDiceTool: FunctionTool = {
     }
 }
 
-export default RollDiceTool;
+export default RollTool;
