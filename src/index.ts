@@ -1,5 +1,3 @@
-import Agent from "./agent/agent";
-
 import GoogleAgent from "./agent/google";
 import OllamaAgent from "./agent/ollama";
 
@@ -12,7 +10,7 @@ const settingEndpoint = "endpoint";
 const settingAPIKey = "apiKey";
 const settingMaxOutputTokens = "maxOutputTokens";
 
-let agent: Agent;
+let agent: GoogleAgent | OllamaAgent;
 
 Hooks.once("init", () => {
   console.log(`${moduleName} | Initializing module`);
