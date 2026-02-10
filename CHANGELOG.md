@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.2.0...v1.2.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* bad tool name on create item ([b884215](https://github.com/marmotherder/foundryvtt-agent-chat/commit/b8842156e265f9a5a94f49d870a07190c146e0ba))
+
 ## [1.2.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.1.0...v1.2.0) (2026-02-10)
 
 
