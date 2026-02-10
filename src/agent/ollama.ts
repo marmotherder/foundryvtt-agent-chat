@@ -31,10 +31,12 @@ export default class OllamaAgent {
                             properties: {} as { [key: string]: {} }
                         }
 
-                        for (const [k, v] of Object(tool.parameters.properties).entries()) {
-                            parameters.properties[k] = {
-                                type: v.type,
-                                description: v.description,
+                        if (tool.parameters.properties) {
+                            for (const [k, v] of Object.entries(tool.parameters.properties)) {
+                                parameters.properties[k] = {
+                                    type: v.type,
+                                    description: v.description,
+                                }
                             }
                         }
 
