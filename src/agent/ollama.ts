@@ -1,4 +1,4 @@
-import ollama, { Ollama, Tool, Message } from 'ollama'
+import { Ollama, Tool, Message } from 'ollama/browser'
 import SystemInstruction from "./instructions";
 import Tools from "../tools/tools";
 
