@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.5...v1.4.0) (2026-02-16)
+
+
+### Features
+
+* add journal read functionality ([5f7b997](https://github.com/marmotherder/foundryvtt-agent-chat/commit/5f7b997c1c05fdaa7caa1c02dd230b65354cd6f0))
+
 ## [1.3.5](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.4...v1.3.5) (2026-02-16)
 
 
