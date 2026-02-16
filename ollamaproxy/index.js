@@ -35,36 +35,74 @@ const allowedRaw = args.allowed || process.env.ALLOWED || "http://localhost:3000
 const ALLOWED = allowedRaw.split(",").map(s => s.trim()).filter(Boolean);
 
 const app = express();
-app.use(cors({ origin: ALLOWED }));
+
+// Custom CORS middleware to handle preflight (OPTIONS) and standard CORS headers
+app.use((req, res, next) => {
+	const origin = req.headers.origin;
+	// Reflect any origin that is in the ALLOWED list or if we're being permissive (*)
+	if (origin) {
+		const isAllowed = ALLOWED.includes(origin) || ALLOWED.includes("*");
+		if (isAllowed) {
+			res.setHeader("Access-Control-Allow-Origin", origin);
+		} else {
+			// If not allowed, still log for visibility to help the user troubleshoot their allowed list
+			console.warn(`Origin ${origin} not in ALLOWED list. Current allowed: ${ALLOWED.join(', ')}`);
+			// Fallback to first allowed or '*' for local development convenience if they are hitting this
+			res.setHeader("Access-Control-Allow-Origin", ALLOWED[0] || "*");
+		}
+		res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		res.setHeader("Access-Control-Allow-Headers", req.headers["access-control-request-headers"] || "Content-Type, Authorization, Origin, Referer, Accept, X-Requested-With");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Vary", "Origin");
+	}
+
+	if (req.method === "OPTIONS") {
+		return res.status(204).end();
+	}
+	next();
+});
+
 app.use('/api', createProxyMiddleware({
 	target: TARGET,
 	changeOrigin: true,
 	proxyTimeout: 120000,
-	timeout: 120000,
-	// When mounted at `/api`, the middleware strips the mount path.
-	// Re-add the `/api` prefix so upstream receives the full path (e.g. /api/chat).
+	// When mounted at `/api` using app.use('/api', ...), 
+	// the path seen by the proxy is relative to `/api` (e.g. /chat).
+	// We must prepend /api back so it reaches Ollama as /api/chat.
 	pathRewrite: { '^': '/api' },
-	// Ensure Ollama sees requests as coming from its own origin/host to avoid 403 Forbidden
-	onProxyReq: (proxyReq, req, res) => {
-		try {
-			// Remove headers that might trigger Ollama's CSRF protection
-			proxyReq.removeHeader('origin');
-			proxyReq.removeHeader('referer');
+	// In http-proxy-middleware v3, events move to the 'on' property
+	on: {
+		proxyReq: (proxyReq, req, res) => {
+			try {
+				// Remove headers that might trigger Ollama's CSRF protection
+				proxyReq.removeHeader('origin');
+				proxyReq.removeHeader('referer');
 
-			// Alternatively, set the Host header correctly (changeOrigin: true handles this, 
-			// but we can be explicit if needed)
-			const u = new URL(TARGET);
-			proxyReq.setHeader('host', u.host);
-		} catch (e) {
-			// ignore
+				// Ensure the Host header matches the target
+				const u = new URL(TARGET);
+				proxyReq.setHeader('host', u.host);
+			} catch (e) {
+				// ignore
+			}
+		},
+		proxyRes: (proxyRes, req, res) => {
+			// Ensure CORS headers are present on the response if the middleware missed them
+			const origin = req.headers.origin;
+			if (origin) {
+				const isAllowed = ALLOWED.includes(origin) || ALLOWED.includes("*");
+				res.setHeader('Access-Control-Allow-Origin', isAllowed ? origin : (ALLOWED[0] || "*"));
+				res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+				res.setHeader('Access-Control-Allow-Headers', req.headers["access-control-request-headers"] || 'Content-Type, Authorization');
+				res.setHeader('Access-Control-Allow-Credentials', 'true');
+			}
+		},
+		error: (err, req, res) => {
+			console.error('[proxy error]', err && err.message);
+			try {
+				res.writeHead(502, { 'Content-Type': 'text/plain' });
+				res.end('Proxy error');
+			} catch (e) {}
 		}
-	},
-	onError: (err, req, res) => {
-		console.error('[proxy error]', err && err.message);
-		try {
-			res.writeHead(502, { 'Content-Type': 'text/plain' });
-			res.end('Proxy error');
-		} catch (e) {}
 	}
 }));
 app.listen(PORT, () => console.log(`Proxy listening on http://127.0.0.1:${PORT} -> ${TARGET} (allowed origins: ${ALLOWED.join(',')})`));
