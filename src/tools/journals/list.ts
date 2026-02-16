@@ -23,6 +23,11 @@ const ListJournals: FunctionTool = {
 
             let journals = [];
             for (const journal of game.journal) {
+                let pages = [];
+                for (const page of journal.pages.values()) {
+                    pages.push(page.name);
+                }
+
                 journals.push({
                     _id: journal._id,
                     _source: journal._source,
@@ -31,7 +36,8 @@ const ListJournals: FunctionTool = {
                     folder: journal.folder,
                     name: journal.name,
                     ownership: journal.ownership,
-                    sort: journal.sort
+                    sort: journal.sort,
+                    pages: pages
                 });
             }
 
