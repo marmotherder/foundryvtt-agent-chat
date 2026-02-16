@@ -26,26 +26,28 @@ Override values with CLI args (or environment variables):
 
 - `--target` or `TARGET`: target Ollama server (default `http://127.0.0.1:11434`)
 - `--port` or `PORT`: proxy listen port (default `5000`)
-- `--allowed` or `ALLOWED`: comma-separated allowed origins for CORS (default `http://localhost:30000`)
+- `--allowed` or `ALLOWED`: comma-separated allowed origins for CORS (default `http://localhost:30000,http://127.0.0.1:30000`)
 
 Examples
 
-Run proxy on port 5000 for a local Ollama and allow two origins:
+Run proxy on port 5000 for a local Ollama and allow several origins:
 
 ```bash
-node ollamaproxy/index.js --target=http://127.0.0.1:11434 --port=5000 --allowed=http://localhost:30000,http://foundry.local
+node ollamaproxy/index.js --target=http://127.0.0.1:11434 --port=5000 --allowed=http://localhost:30000,http://127.0.0.1:30000,http://foundry.local
 ```
 
 Or set via env:
 
 ```bash
-TARGET=http://127.0.0.1:11434 PORT=5000 ALLOWED=http://localhost:30000 node ollamaproxy/index.js
+TARGET=http://127.0.0.1:11434 PORT=5000 ALLOWED="http://localhost:30000,http://127.0.0.1:30000" node ollamaproxy/index.js
 ```
 
-Security notes
+Security and 403 Forbidden fixes
 
-- Restrict the `ALLOWED` origins to only the origins you control; avoid `*` in production.
-- The proxy forwards requests and can add headers (for example API keys) if you need to talk to Ollama Cloud. Keep keys off client code.
+- **Bypass 403 Forbidden**: Ollama restricts incoming origins and referers for security. The proxy automatically strips these headers before forwarding to allow the request to pass.
+- **CORS Handling**: Browsers sometimes use `localhost` and other times `127.0.0.1`. The default allowed list includes both to ensure Foundry can communicate with the proxy.
+- **Restrict Origins**: Restrict the `ALLOWED` origins to only the origins you control; avoid `*` in production.
+- **Local Use Only**: This proxy is designed to bridge local browser-based modules to a local Ollama instance. Keep any sensitive host credentials or secrets out of the client codebase.
 
 How to use with Foundry
 

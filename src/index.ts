@@ -175,5 +175,5 @@ Hooks.on("chatMessage", (chatLog: ChatLog<ChatLog.RenderContext, ChatLog.Configu
     ui?.notifications?.warn(`${moduleName}: failed to process agent chat message — ${errMsg}`);
   });
 
-  return false;
+  return;
 });
