@@ -95,7 +95,7 @@ export default class OllamaAgent {
                 }
             }
 
-            if (response.done) {
+            if (response.done && (!response.message.tool_calls || response.message.tool_calls.length === 0)) {
                 cont = false;
                 responseMessage = response.message.content as string;
             }
