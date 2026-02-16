@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.5](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.4...v1.3.5) (2026-02-16)
+
+
+### Bug Fixes
+
+* handle tool responses in ollama properly ([6620848](https://github.com/marmotherder/foundryvtt-agent-chat/commit/66208484a8471d9e7681f2484a9af6e7f480fbd7))
+* resolved proxy issues ([24d5f7e](https://github.com/marmotherder/foundryvtt-agent-chat/commit/24d5f7e3db2153abe1036208bbcb957a47749ec8))
+
 ## [1.3.4](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.3...v1.3.4) (2026-02-16)
 
 
