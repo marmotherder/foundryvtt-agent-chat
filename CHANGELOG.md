@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.4](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.3...v1.3.4) (2026-02-16)
+
+
+### Bug Fixes
+
+* add ollama proxy app ([d00679c](https://github.com/marmotherder/foundryvtt-agent-chat/commit/d00679cd0f156f997c08098efa80f6d3a25b1598))
+* proxy origin issue ([2f846de](https://github.com/marmotherder/foundryvtt-agent-chat/commit/2f846de73ebd5246257bae32e75187dedefc4709))
+* return chat prompt info ([2f846de](https://github.com/marmotherder/foundryvtt-agent-chat/commit/2f846de73ebd5246257bae32e75187dedefc4709))
+
 ## [1.3.3](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.2...v1.3.3) (2026-02-10)
 
 
