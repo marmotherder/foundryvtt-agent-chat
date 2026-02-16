@@ -13,6 +13,9 @@ import CreateItem from "./items/create";
 import UpdateItem from "./items/update";
 import ListItems from "./items/list";
 
+import GetJournal from "./journals/get";
+import ListJournals from "./journals/list";
+
 
 import { FunctionTool } from "./types";
 
@@ -26,7 +29,9 @@ const Tools: FunctionTool[] = [
     ListFolders,
     CreateItem,
     UpdateItem,
-    ListItems
+    ListItems,
+    GetJournal,
+    ListJournals
 ];
 
 export default Tools;
