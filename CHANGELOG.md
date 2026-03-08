@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.4.1...v1.5.0) (2026-03-08)
+
+
+### Features
+
+* add filter support to list ([b56e1b6](https://github.com/marmotherder/foundryvtt-agent-chat/commit/b56e1b62f9f89b4f06aad0b713a8039b5f279866))
+
 ## [1.4.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.4.0...v1.4.1) (2026-02-16)
 
 
