@@ -18,7 +18,12 @@ const List: FunctionTool = {
                 title: 'actors',
                 type: Type.BOOLEAN,
                 description: 'Whether to list actor compendiums.'
-            }
+            },
+            filter: {
+                title: 'filter',
+                type: Type.STRING,
+                description: 'A regex string to filter compendiums by name (optional).'
+            },
         },
         required: ['items', 'actors']
     },
@@ -37,9 +42,15 @@ const List: FunctionTool = {
                 actors: [] as {name: string, id: string, label: string}[]
             }
 
+            const filter = args.filter as string;
+            const regex = filter ? new RegExp(filter, 'i') : null;
+
             if (args.items) {
                 const itemPacks = game.packs.filter(p => p.documentName === "Item");
                 for (const itemPack of itemPacks) {
+                    if (regex && !regex.test(itemPack.metadata.label)) {
+                        continue;
+                    }
                     results.items.push({
                         name: itemPack.metadata.label,
                         id: itemPack.metadata.id,
@@ -51,6 +62,9 @@ const List: FunctionTool = {
             if (args.actors) {
                 const actorPacks = game.packs.filter(p => p.documentName === "Actor");
                 for (const actorPack of actorPacks) {
+                    if (regex && !regex.test(actorPack.metadata.label)) {
+                        continue;
+                    }
                     results.actors.push({
                         name: actorPack.metadata.label,
                         id: actorPack.metadata.id,

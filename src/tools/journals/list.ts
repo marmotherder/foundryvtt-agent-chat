@@ -4,28 +4,44 @@ const ListJournals: FunctionTool = {
     name: 'ListJournals',
     description: `Retrieve journal entries from the current Foundry game. This can overload the context window, in this case, don't retrieve the content, and get the specific journal entry directly with the GetJournal tool.`,
     parameters: {
-        title: 'content',
-        type: Type.BOOLEAN,
-        description: 'Should the full contents of the journals be retrieved?'
+        title: 'list',
+        type: Type.OBJECT,
+        description: 'Parameters for listing journal entries.',
+        properties: {
+            content: {
+                title: 'content',
+                type: Type.BOOLEAN,
+                description: 'Whether to retrieve the full content of the journals, which may overload the context window. If false, only metadata about the journals will be retrieved.'
+            },
+            filter: {
+                title: 'filter',
+                type: Type.STRING,
+                description: 'A regex string to filter journal entries by name (optional).'
+            },
+        }
     },
     callTool: async (args: Arguments<string, unknown>) => {
         console.log(`ListJournals called with arguments: ${JSON.stringify(args)}`);
         try {
-            const content = args['content'] as boolean;
+            const content = args.content as boolean;
 
             if (!game || !game.journal) {
                 return "Failed to list journals: game or game.journal not available.";
             }
 
-            if (content) {
-                return `Successfully listed journals: ${JSON.stringify(game.journal)}`;
-            }
-
             let journals = [];
+            const filter = args.filter as string;
+            const regex = filter ? new RegExp(filter, 'i') : null;
             for (const journal of game.journal) {
+                if (regex && !regex.test(journal.name)) {
+                    continue;
+                }
+
                 let pages = [];
-                for (const page of journal.pages.values()) {
-                    pages.push(page.name);
+                if (content) {
+                    for (const page of journal.pages.values()) {
+                        pages.push(page.name);
+                    }
                 }
 
                 journals.push({
