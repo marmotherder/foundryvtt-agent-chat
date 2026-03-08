@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.5.0...v1.5.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* set html rendering as instruction ([3df855e](https://github.com/marmotherder/foundryvtt-agent-chat/commit/3df855e93a0ce130c67d180bf0b2f5046144f1f2))
+
 ## [1.5.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.4.1...v1.5.0) (2026-03-08)
 
 
