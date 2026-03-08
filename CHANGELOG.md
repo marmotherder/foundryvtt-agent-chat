@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.4.0...v1.4.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* return journal page names where content is not requested ([af2dfa0](https://github.com/marmotherder/foundryvtt-agent-chat/commit/af2dfa03c9d414bb3dd68c908f451157a6032b70))
+
 ## [1.4.0](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.3.5...v1.4.0) (2026-02-16)
 
 
