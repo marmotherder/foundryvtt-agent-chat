@@ -28,7 +28,7 @@ jobs:
     - name: Build Module
       run: npm run build
 
-    - uses: googleapis/release-please-action@v4
+    - uses: googleapis/release-please-action@v5
       id: release
       with:
         release-type: node
