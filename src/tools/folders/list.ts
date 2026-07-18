@@ -18,6 +18,18 @@ const List: FunctionTool = {
                 title: 'actors',
                 type: Type.BOOLEAN,
                 description: 'Whether to list actor folders.'
+            },
+            limit: {
+                title: 'limit',
+                type: Type.INTEGER,
+                description: 'Maximum number of results to return.',
+                example: 50
+            },
+            offset: {
+                title: 'offset',
+                type: Type.INTEGER,
+                description: 'Number of items to skip (used for pagination).',
+                example: 0
             }
         },
         required: ['items', 'actors']
@@ -38,7 +50,11 @@ const List: FunctionTool = {
             }
 
             if (args.items) {
-                const itemFolders = game.folders.filter(p => p.type === "Item");
+                let itemFolders = game.folders.filter(p => p.type === "Item");
+                const start = Number(args.offset) || 0;
+                const limit = args.limit ? Number(args.limit) : itemFolders.length;
+                itemFolders = itemFolders.slice(start, start + limit);
+
                 for (const itemFolder of itemFolders) {
                     let folder: {name: string, id: string, depth: number | undefined, parentId: string | undefined} = {
                         name: itemFolder.name,
@@ -56,7 +72,11 @@ const List: FunctionTool = {
             }
 
             if (args.actors) {
-                const actorFolders = game.folders.filter(p => p.type === "Actor");
+                let actorFolders = game.folders.filter(p => p.type === "Actor");
+                const start = Number(args.offset) || 0;
+                const limit = args.limit ? Number(args.limit) : actorFolders.length;
+                actorFolders = actorFolders.slice(start, start + limit);
+
                 for (const actorFolder of actorFolders) {
                     let folder: {name: string, id: string, depth: number | undefined, parentId: string | undefined} = {
                         name: actorFolder.name,
@@ -73,11 +93,37 @@ const List: FunctionTool = {
                 }
             }
             
-            return `Successfully listed folders: ${JSON.stringify(results)}`;
+            // --- Start of formatted output generation ---
+
+            let markdownOutput = "### 📁 Folder Listing Results\n";
+
+            if (results.items.length > 0) {
+                markdownOutput += "\n#### Item Folders\n";
+                markdownOutput += "| Name | ID | Depth | Parent ID |\n";
+                markdownOutput += "| :--- | :---: | :---: | :---: |\n";
+                results.items.forEach(folder => {
+                    markdownOutput += `| ${folder.name} | ${folder.id} | ${folder.depth ?? 'N/A'} | ${folder.parentId ?? 'None'} |\n`;
+                });
+            } else {
+                markdownOutput += "\n#### Item Folders\nNo item folders found.\n";
+            }
+
+            if (results.actors.length > 0) {
+                markdownOutput += "\n#### Actor Folders\n";
+                markdownOutput += "| Name | ID | Depth | Parent ID |\n";
+                markdownOutput += "| :--- | :---: | :---: | :---: |\n";
+                results.actors.forEach(folder => {
+                    markdownOutput += `| ${folder.name} | ${folder.id} | ${folder.depth ?? 'N/A'} | ${folder.parentId ?? 'None'} |\n`;
+                });
+            } else {
+                markdownOutput += "\n#### Actor Folders\nNo actor folders found.\n";
+            }
+
+            return markdownOutput;
         }
         catch (err) {
             const message = err instanceof Error ? err.message : String(err);
-            return `Failed to list folders: ${message}`;
+            return `❌ **Error Listing Folders**: Failed to retrieve folder data due to an API or runtime error. Please check the game state or permissions. Details: \n\`\`\`\n${message}\n\`\`\``;
         }
     }
 };
