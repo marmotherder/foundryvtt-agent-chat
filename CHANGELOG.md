@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.5.2...v1.5.3) (2026-07-18)
+
+
+### Bug Fixes
+
+* set v14 compatability with html stripping ([171645b](https://github.com/marmotherder/foundryvtt-agent-chat/commit/171645b6898bba3b279e8a8397c1b03c5d480d62))
+
 ## [1.5.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.5.1...v1.5.2) (2026-07-18)
 
 
