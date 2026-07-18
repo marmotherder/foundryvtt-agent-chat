@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.5.1...v1.5.2) (2026-07-18)
+
+
+### Bug Fixes
+
+* add scan limit ([e096691](https://github.com/marmotherder/foundryvtt-agent-chat/commit/e0966916b85debbeb16c0814de167d5a25417305))
+
 ## [1.5.1](https://github.com/marmotherder/foundryvtt-agent-chat/compare/v1.5.0...v1.5.1) (2026-03-08)
 
 
